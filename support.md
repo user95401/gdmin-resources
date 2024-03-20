@@ -1,0 +1,4 @@
+- distribute mod
+- report bugs
+- suggest ideas
+- contribute to source code

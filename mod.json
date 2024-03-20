@@ -1,0 +1,63 @@
+{
+	"geode": "2.0.0-beta.20",
+	"gd": "2.204",
+	"version": "v1.0.0",
+	"id": "user95401.my-geode-mod-template",
+	"name": "my-geode-mod-template",
+	"developers": [ "user95401" ],
+	"description": "my-geode-mod-template",
+	"early-load": true,
+	"repository": "https://github.com/user95401/my-geode-mod-template",
+	"issues": {
+		"info": "goto aaa this",
+		"url": "https://github.com/user95401/my-geode-mod-template/issues"
+	},
+	"resources": {
+		"files": [ "resources/files/*" ],
+		"sprites": [ "resources/sprites/*" ],
+		"spritesheets": {
+			"BaseSheet": [ "resources/spritesheets/BaseSheet/*" ]
+		}
+	},
+	"settings": {
+		"awesomeness-level": {
+			"name": "Awesomeness level",
+			"description": "How awesome the mod should be",
+			"type": "int",
+			"default": 0
+		},
+		"asd": {
+			"name": "Awesomeless",
+			"description": "Should the mod be awesomeless?",
+			"type": "bool",
+			"default": false
+		},
+		"slider": {
+			"name": "Slider!! Weeeee",
+			"type": "float",
+			"default": 0,
+			"min": -10,
+			"max": 10,
+			"control": {
+				"slider": true
+			}
+		},
+		"awesome-color": {
+			"name": "Awesome color",
+			"type": "color",
+			"default": "#f438a2"
+		},
+		"astring": {
+			"name": "Any String",
+			"description": "a",
+			"type": "string",
+			"default": "my-geode-mod-template"
+		},
+		"ana-path": {
+			"name": "Your documents",
+			"description": "to store it on paste bin",
+			"type": "path",
+			"default": "my-geode-mod-template"
+		}
+	}
+}
