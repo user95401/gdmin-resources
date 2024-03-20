@@ -60,19 +60,14 @@ jobs:
         with: 
           delete-artifacts: false
         id: build
-      - run: |
-          import json, os
-          try:
-            with open("mod.json", "r") as file:
-              data = json.load(file)
-              version = data.get("version")
-            with open(os.getenv('GITHUB_ENV'), "a") as file_env:
-              file_env.write(f"VERSION={version}\n")
-          except FileNotFoundError:
-            print("Error: File not found.")
+      - name: get properties
+        id: json_properties
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: "mod.json"
       - uses: softprops/action-gh-release@v2
         name: "Release"
         with:
-          tag_name: "$VERSION"
+          tag_name: "${{steps.json_properties.outputs.version}}"
           files: "${{ steps.build.outputs.build-output }}/*"
           
