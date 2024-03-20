@@ -60,10 +60,14 @@ jobs:
         with: 
           delete-artifacts: false
         id: build
+      - run: |
+          echo 'PACKAGE_JSON<<EOF' >> $GITHUB_ENV
+          cat ./mod.json >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
       - uses: softprops/action-gh-release@v2
         name: "Release With Dev Tag"
         with:
-          tag_name: dev
+          tag_name: "${{ fromJson(env.PACKAGE_JSON).version }}"
           files: "${{ steps.build.outputs.build-output }}/*"
       - uses: softprops/action-gh-release@v2
         name: "Release"
