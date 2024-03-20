@@ -61,17 +61,18 @@ jobs:
           delete-artifacts: false
         id: build
       - run: |
-          echo 'PACKAGE_JSON<<EOF' >> $GITHUB_ENV
-          cat "$GITHUB_REPOSITORY/mod.json" >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-      - uses: softprops/action-gh-release@v2
-        name: "Release With Dev Tag"
-        with:
-          tag_name: "${{ fromJson(env.PACKAGE_JSON).version }}"
-          files: "${{ steps.build.outputs.build-output }}/*"
+          import json, os
+          try:
+            with open("mod.json", "r") as file:
+              data = json.load(file)
+              version = data.get("version")
+            with open(os.getenv('GITHUB_ENV'), "a") as file_env:
+              file_env.write(f"VERSION={version}\n")
+          except FileNotFoundError:
+            print("Error: File not found.")
       - uses: softprops/action-gh-release@v2
         name: "Release"
-        if: startsWith(github.ref, 'refs/tags/')
         with:
+          tag_name: "$VERSION"
           files: "${{ steps.build.outputs.build-output }}/*"
           
