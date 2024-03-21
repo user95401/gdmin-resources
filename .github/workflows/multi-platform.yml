@@ -58,11 +58,11 @@ jobs:
         with: 
           delete-artifacts: false
         id: build
-      - name: get properties
+      - name: Get mod properties
         id: json_properties
         uses: ActionsTools/read-json-action@main
         with:
-          file_path: "${{ github.action_path }}/mod.json"
+          file_path: "https://raw.githubusercontent.com/${{ github.GITHUB_REPOSITORY }}/master/mod.json"
       - uses: softprops/action-gh-release@v2
         name: "Release"
         with:
