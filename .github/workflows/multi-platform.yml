@@ -35,7 +35,7 @@ jobs:
           target: ${{ matrix.config.target }}
 
   package:
-    name: Package builds
+    name: Package and release builds
     runs-on: ubuntu-latest
     needs: ['build']
     steps:
@@ -43,20 +43,12 @@ jobs:
         with: 
           delete-artifacts: false
         id: build
-
       - uses: actions/upload-artifact@v4
         with:
           name: Build Output
-          path: ${{ steps.build.outputs.build-output }}
-          
-  releasewnotes:
-    name: Release
-    runs-on: ubuntu-latest
-    needs: ['package']
-    steps:
+          path: ${{ steps.build.outputs.build-output }} 
       - name: Set up Git repository
         uses: actions/checkout@v2
-        id: build
       - name: Get mod properties
         id: json_properties
         uses: ActionsTools/read-json-action@main
@@ -66,5 +58,5 @@ jobs:
         name: "Release"
         with:
           tag_name: "${{steps.json_properties.outputs.version}}"
-          files: "${{jobs.package.steps.build.outputs.build-output}}/*"
+          files: "${{steps.build.outputs.build-output}}/*"
           
