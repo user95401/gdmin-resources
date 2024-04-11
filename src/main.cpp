@@ -10,5 +10,6 @@ class $modify(CCLayerExt, CCLayer) {
             firstEverLayer = rtn;
             CCFileUtils::sharedFileUtils()->addPriorityPath((dirs::getTempDir() / "Resources").string().c_str());
         }
+        return rtn;
     }
 };
