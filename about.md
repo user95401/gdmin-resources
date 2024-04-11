@@ -1,3 +1,1 @@
-# Template Mod
-
-Edit about.md to change this
+### <co>geode mod that adding resources for gd</c>
